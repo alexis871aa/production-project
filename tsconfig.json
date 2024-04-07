@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    // это собственно то место, куда производится сборка, в нашем случае она не так важна, потому что собираем мы с помощью webpack
+    "outDir": "./dist/",
+    // подсвечивает все места, где не указан тип
+    // однако это не означает, что теперь вовсе нельзя использовать any
+    // это означает лишь, что в подобных случаях разработчик должен явно писать any
+    "noImplicitAny": true,
+    // в module мы указываем модульную систему, это когда common js, ecmaScript Next, ecmaScript 6 - таким образом здесь описываются различные способы модульной сборки
+    "module": "ESNext",
+    // в target мы указываем версию стандарта, в которую мы будем компилировать по итогу, обычно компилируют либо в es5, либо в es6 и делается это для того, чтобы большинство браузеров смогло поддерживать
+    "target": "es5",
+    // настройка ниже позволяет нам писать конструкции типа jsx разметки в ts файлах
+    "jsx": "react-jsx",
+    // allowJs позволяет компилятору обрабатывать не только ts файлы
+    "allowJs": true,
+    // определяет какие импорты будут тут всего два варианта node и classic
+    "moduleResolution": "node",
+
+    // для абсолютного импорта - пока не работает
+    // "baseUrl": ".",
+
+    // esModuleInterop позволяет работать с пакетами, которые используют common js как с обычными пакетами с помощью import (require() module.export), такая система называется common js
+    // import Moment from 'moment';
+    // без флага esModuleInterop результат undefined
+    // console.log(Moment);
+    // с флагом результат [objectObject]
+    // console.log(Moment);
+    "esModuleInterop": true,
+    // Если какая-либо библиотека не имеет default import, лоадеры вроде ts-loader или babel-loader автоматически создают их вместо такого импорта import * as React from 'react';
+    // можно писать такой
+    // import React from 'react';
+    "allowSyntheticDefaultImports": true,
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}
